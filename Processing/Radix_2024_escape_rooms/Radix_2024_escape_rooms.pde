@@ -34,19 +34,16 @@ int timer_start_at_video_intro = 5740 / 30; // seconds (5740 frames)
 
 void settings() {
   size(1920, 1080, P2D);
+  //fullScreen(2);
   smooth(10);
 }
 
 void setup() {
   // video loading
-  video_intro = new Movie(this, "EM_VIDEO_INIZIALE.mp4");  // EM_VIDEO_INIZIALE_S
+  video_intro = new Movie(this, "EM_SaturlandiaOFF.mp4");  // EM_VIDEO_INIZIALE_S
   
   // font loading
   fontTimer = createFont("TheFuture-Black.otf", sizefontTimer);
-  
-  // image loading
-  galaxi_dream_logo = loadImage("galactic_dream.png");
-  image(galaxi_dream_logo, 0, 0);
   
   // Background image
   
