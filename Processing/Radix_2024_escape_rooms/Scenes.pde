@@ -35,6 +35,7 @@ void playScene() {
       
       // video playback captain and worlds
       movie_scene_1.play();
+      if(dev) movie_scene_1.jump(movie_scene_1.duration() - 2);
       delay(5);
       
     }
@@ -136,6 +137,13 @@ void playScene() {
       else if(val.equals("BADGES")) {
         activateNavigationButtons(false);
         screenUpdate("badges");
+        delay(1000);
+        auto_distruction_activated.amp(0.2);
+        choice_moment.play();
+        while(choice_moment.isPlaying()) {
+          delay(100);
+        }
+        auto_distruction_activated.amp(1.0);
         check_next_scene = true;
       }
       else if(check_next_scene) {
@@ -154,10 +162,33 @@ void playScene() {
       
       old_scene = scene;
       
+      relaysRoom(false);
+      
+      relaysSpots(true);
+      
+      startSoundPlaying(auto_distruction_3min, "3min");
       
     }
     else {
-
+      
+      if(current_playing.equals("3min")) checkSoundPlaying(auto_distruction_3min, "2min");
+      else if(current_playing.equals("2min")) checkSoundPlaying(auto_distruction_2min, "1min");
+      else if(current_playing.equals("1min")) checkSoundPlaying(auto_distruction_1min, "end_game");
+      
+      if(millisTimerElapsed()) {
+        if(next_playing.equals("2min")) {
+          startSoundPlaying(auto_distruction_2min, "2min");
+        }
+        else if(next_playing.equals("1min")) {
+          startSoundPlaying(auto_distruction_1min, "1min");
+        }
+        else if(next_playing.equals("end_game")) {
+          auto_distruction_activated.jump(0);
+          auto_distruction_activated.pause();
+          scene = 0;
+        }
+      }
+      
     }
   }
   

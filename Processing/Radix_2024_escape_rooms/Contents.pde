@@ -19,5 +19,9 @@ void loadVideos() {
 
 void loadSounds() {
   auto_distruction_activated = new SoundFile(this, "EM_AUDIO_03.mp3");
+  choice_moment = new SoundFile(this, "EM_AUDIO_05.mp3");
+  auto_distruction_3min = new SoundFile(this, "EM_AUDIO_06.mp3");
+  auto_distruction_2min = new SoundFile(this, "EM_AUDIO_07.mp3");
+  auto_distruction_1min = new SoundFile(this, "EM_AUDIO_08.mp3");
   println("loadSounds() done");
 }

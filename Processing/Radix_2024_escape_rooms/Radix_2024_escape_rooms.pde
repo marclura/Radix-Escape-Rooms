@@ -57,6 +57,10 @@ Movie movie_scene_2;
 
 // Sounds
 SoundFile auto_distruction_activated;
+SoundFile choice_moment;
+SoundFile auto_distruction_3min;
+SoundFile auto_distruction_2min;
+SoundFile auto_distruction_1min;
 
 
 // Fonts
@@ -79,6 +83,8 @@ String income_serial_val = "";
 // Timer
 int countdown_duration = 20;  // minutes
 int timer_start_at_video_intro = 5740 / 30; // seconds (5740 frames)
+int old_millis = 0;  // ms
+int millis_delay = 0;  // seconds
 
 // Keys management
 boolean key_released = true;  // proper events triggering
@@ -91,6 +97,8 @@ String message_correct_password = "access granted";
 byte current_fake_news = 3;
 byte fake_news_count = 5;
 boolean check_next_scene = false;
+String current_playing = "";
+String next_playing = "";
 
 // development
 boolean dev = true;

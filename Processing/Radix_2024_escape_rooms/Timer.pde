@@ -42,4 +42,15 @@ void runTimer() {
 }
 
 
-  
+void setMillisTimer(int seconds) {  // seconds
+  old_millis = millis();
+  millis_delay = seconds;
+}
+
+boolean millisTimerElapsed() {
+  boolean elasped = false;
+  if(millis() - old_millis > millis_delay * 1000) {
+    elasped = true;
+  }
+  return elasped;
+}
