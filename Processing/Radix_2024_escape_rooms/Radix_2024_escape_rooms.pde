@@ -61,7 +61,7 @@ int screen_x = 0;  // screen x position in fullscreen(SPAN) mode
 int beamer_x = 1920;  // beamer x position in fullscreen(SPAN) mode
 
 // Serial
-int serial_baudrate = 115200;
+int serial_baudrate = 921600;
 boolean serial_first_contact = false;  // communication initialization
 Serial SerialPort;  // create a object for the serial class
 byte serial_port_index = 1;  // current serial port index
@@ -70,6 +70,9 @@ boolean serial_reset = false;  // execute arduino reset
 // Timer
 int countdown_duration = 20;  // minutes
 int timer_start_at_video_intro = 5740 / 30; // seconds (5740 frames)
+
+// Keys management
+boolean key_released = true;  // proper events triggering
 
 // development
 boolean dev = true;

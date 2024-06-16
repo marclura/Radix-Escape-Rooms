@@ -32,9 +32,9 @@ void serialEvent(Serial Port) {
     if(!serial_first_contact) {
       if(val.equals("A")) {
         Port.clear();
-        Port.write("A\n");  // handshake return to Arduino
+        Port.write("A");  // handshake return to Arduino
         println("Arduino is connected");
-        delay(4000);  // slowing down for the Arduino
+        delay(3000);  // slowing down for the Arduino
         serial_first_contact = true;
       }
     }

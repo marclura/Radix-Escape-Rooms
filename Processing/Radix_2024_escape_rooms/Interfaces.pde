@@ -30,3 +30,35 @@ void relaysSpots(boolean status) {
     serialSend("RS", 0);
   }
 }
+
+
+// Key coded pressed check
+boolean checkKeyCodedPressed(int k) {
+  boolean pressed = false;
+  if(keyPressed && key_released) {
+    key_released = false;  // prevent events skipping
+    if(key == CODED) {
+      if(keyCode == k) {
+        pressed = true;
+      }
+    }
+  }
+  return pressed;
+}
+
+// Generic key pressed check
+boolean checkKeyPressed(char k) {
+  boolean pressed = false;
+  if(keyPressed && key_released) {
+    key_released = false;  // prevent events skipping
+    if(key == k) {
+      pressed = true;
+    }
+  }
+  return pressed;
+}
+
+// Event at key released
+void keyReleased() {
+  key_released = true;
+}

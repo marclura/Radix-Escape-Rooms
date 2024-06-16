@@ -38,7 +38,7 @@ Interface interface[] = {
 int interface_size = 0;
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(921600);
 
   interface_size = sizeof(interface) / (sizeof(interface[0]));  // data init
 
