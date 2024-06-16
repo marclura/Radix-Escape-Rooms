@@ -58,7 +58,7 @@ void playScene() {
       
       // video playback captain
       movie_scene_2.play();
-      movie_scene_2.jump(movie_scene_2.duration() - 2);
+      //movie_scene_2.jump(movie_scene_2.duration() - 2);
       delay(5);
       
       // then, countdown beamer and password input on keypad
@@ -99,11 +99,12 @@ void playScene() {
       
       old_scene = scene;
       
-      delay(4000);
+      delay(3000);
+      
+      
       
       screenUpdate("fake_news_1");
-      
-      
+            
       
       
     }

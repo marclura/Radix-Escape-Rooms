@@ -32,10 +32,17 @@ struct Interface {
 Interface interface[] = {
   {"RR", 0, 7, 'o'},
   {"RS", 0, 0, 'o'},
-  {"B12", 0, 12, 'o'}
+  {"LED_NEXT", 0, 12, 'o'},
+  {"LED_BACK", 0, 11, 'o'},
+  {"BTN_NEXT", 0, 5, 'i'},
+  {"BTN_BACK", 0, 4, 'i'}
 };
 
 int interface_size = 0;
+
+// Status
+bool navigation_active = false;
+bool old_navigation_active = false;
 
 void setup() {
   Serial.begin(921600);
@@ -44,9 +51,13 @@ void setup() {
 
   initPins();
 
+  // serial connection indicator
+  pinMode(13, OUTPUT);
+  digitalWrite(13, LOW);
+
   establishContact(); // wait for the connection with Processing
 
-  pinMode(13, OUTPUT);
+
 
 }
 
@@ -57,6 +68,8 @@ void loop() {
   if(Serial.available() > 0) {
     readSerial();
   }
+
+  updateNavigation();
 
 }
 
@@ -87,6 +100,13 @@ void updateInterface(String command, int state) {
     if(interface[id].type == 'o') { // output
       digitalWrite(interface[id].pin, interface[id].state);
     }
+  }
+  else {
+    
+    if(command == "NAV") {
+      navigation_active = state;
+    }
+
   }
 
 }
@@ -141,4 +161,7 @@ void establishContact() {
   delay(500);
 
   String msg = Serial.readStringUntil("\n"); // clean the buffer
+
+  digitalWrite(13, HIGH);
+
 }

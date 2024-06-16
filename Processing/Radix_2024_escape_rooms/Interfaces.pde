@@ -31,6 +31,22 @@ void relaysSpots(boolean status) {
   }
 }
 
+// Navigation buttons
+void activateNavigationButtons(boolean status) {
+ 
+  print("activateNavigationButtons: ");
+  
+  if(status) {
+    println("ON");
+    serialSend("NAV", 1);
+  }
+  else {
+    println("OFF");
+    serialSend("NAV", 0);
+  }
+  
+}
+
 
 // Key coded pressed check
 boolean checkKeyCodedPressed(int k) {

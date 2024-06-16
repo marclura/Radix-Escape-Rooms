@@ -36,7 +36,6 @@ import processing.sound.*;
 // Serial library
 import processing.serial.*; 
 
-
 // Scene management
 int scene = 0;
 int old_scene = -1;
@@ -90,7 +89,7 @@ String message_wrong_password = "incorrect, try again";
 String message_correct_password = "access granted";
 
 // development
-boolean dev = false;
+boolean dev = true;
 
 
 void settings() {
@@ -123,8 +122,6 @@ void setup() {
   
   // Load Sounds
   loadSounds();
-  
-  
   
 
 }
