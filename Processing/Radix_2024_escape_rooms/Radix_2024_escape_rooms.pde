@@ -108,11 +108,11 @@ void settings() {
 
 void setup() {
   
-  // Serial init
-  serialInit();
-  
   // hide cursor
   noCursor();
+  
+  // Serial init
+  serialInit();
   
   // font loading
   fontTimer = createFont("TheFuture-Black.otf", size_font_timer);
@@ -127,7 +127,6 @@ void setup() {
   // Load Sounds
   loadSounds();
   
-
 }
 
 void draw() {
