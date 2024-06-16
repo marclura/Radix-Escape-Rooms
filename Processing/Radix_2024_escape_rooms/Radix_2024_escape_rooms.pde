@@ -37,7 +37,7 @@ import processing.sound.*;
 import processing.serial.*; 
 
 // Scene management
-int scene = 0;
+int scene = 3;
 int old_scene = -1;
 
 // Contents
@@ -74,6 +74,7 @@ boolean serial_first_contact = false;  // communication initialization
 Serial SerialPort;  // create a object for the serial class
 byte serial_port_index = 1;  // current serial port index
 boolean serial_reset = false;  // execute arduino reset
+String income_serial_val = "";
 
 // Timer
 int countdown_duration = 20;  // minutes
@@ -87,6 +88,9 @@ String scene_2_password = "123456";
 String input_password = "";
 String message_wrong_password = "incorrect, try again";
 String message_correct_password = "access granted";
+byte current_fake_news = 3;
+byte fake_news_count = 5;
+boolean check_next_scene = false;
 
 // development
 boolean dev = true;

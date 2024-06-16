@@ -35,7 +35,13 @@ Interface interface[] = {
   {"LED_NEXT", 0, 12, 'o'},
   {"LED_BACK", 0, 11, 'o'},
   {"BTN_NEXT", 0, 5, 'i'},
-  {"BTN_BACK", 0, 4, 'i'}
+  {"BTN_BACK", 0, 4, 'i'},
+  {"S0", 0, A0, 's'},
+  {"S1", 0, A1, 's'},
+  {"S2", 0, A2, 's'},
+  {"S3", 0, A3, 's'},
+  {"S4", 0, A4, 's'},
+  {"S5", 0, A5, 's'}
 };
 
 int interface_size = 0;
@@ -43,6 +49,10 @@ int interface_size = 0;
 // Status
 bool navigation_active = false;
 bool old_navigation_active = false;
+
+// Sensor badges threshold
+int bage_sensors_threshold = 400;
+
 
 void setup() {
   Serial.begin(921600);
@@ -70,6 +80,8 @@ void loop() {
   }
 
   updateNavigation();
+
+  readBadgesSensors();
 
 }
 
@@ -140,14 +152,13 @@ void readSerial() {
 // setup the pins
 void initPins() {
   for(int i=0; i<interface_size; i++) {
-    if(interface[i].type == 'o') {  // Output
+    if(interface[i].type == 'o') {  // Digital Output
       pinMode(interface[i].pin, OUTPUT);
       digitalWrite(interface[i].pin, interface[i].state);
     }
-    else {  // Input
+    else if(interface[i].type == 'i') {  // Digital Input
       pinMode(interface[i].pin, INPUT);
     }
-    
   }
 }
 

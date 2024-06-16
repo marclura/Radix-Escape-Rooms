@@ -59,4 +59,12 @@ void serialSend(String command, int state) {
 // received serial data
 void serialReceived(String val) {
   println("serialReceived: " + val);
+  income_serial_val = val;
+}
+
+// get incoming serial value
+String getIncomeSerialVal() {
+  String val = income_serial_val;
+  income_serial_val = "";
+  return val;
 }

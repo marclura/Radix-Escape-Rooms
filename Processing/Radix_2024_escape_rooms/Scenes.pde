@@ -58,7 +58,7 @@ void playScene() {
       
       // video playback captain
       movie_scene_2.play();
-      //movie_scene_2.jump(movie_scene_2.duration() - 2);
+      if(dev) movie_scene_2.jump(movie_scene_2.duration() - 2);
       delay(5);
       
       // then, countdown beamer and password input on keypad
@@ -90,7 +90,7 @@ void playScene() {
   }
   
   /* ################  SCENE 3 #################
-     Alarm captain distruction, timer loop alarm, password
+     Fake news scrolling, add badges, choice of the author
   */
   else if(scene == 3) {
     
@@ -101,17 +101,65 @@ void playScene() {
       
       delay(3000);
       
+      activateNavigationButtons(true);  
       
+      screenUpdate("fake_news_" + current_fake_news);
       
-      screenUpdate("fake_news_1");
-            
-      
+      check_next_scene = false;
       
     }
     else {
       
+      // Navigation fake news
+      String val = getIncomeSerialVal();
+      
+      if(val.equals("NEXT")) {
+         if(current_fake_news < fake_news_count) {
+           current_fake_news++;
+           screenUpdate("fake_news_" + current_fake_news);
+           
+           serialSend("LED_BACK", 1);
+           if(current_fake_news == fake_news_count) serialSend("LED_NEXT", 0);
+           else serialSend("LED_NEXT", 1);
+         }
+      }
+      else if(val.equals("BACK")) {
+         if(current_fake_news > 1) {
+           current_fake_news--;
+           screenUpdate("fake_news_" + current_fake_news);
+           
+           serialSend("LED_NEXT", 1);
+           if(current_fake_news == 1) serialSend("LED_BACK", 0);
+           else serialSend("LED_BACK", 1);
+         }
+      }
+      else if(val.equals("BADGES")) {
+        activateNavigationButtons(false);
+        screenUpdate("badges");
+        check_next_scene = true;
+      }
+      else if(check_next_scene) {
+        if(checkKeyCodedPressed(RIGHT)) scene++;
+      }
     }
-    
   }
+  
+  /* ################  SCENE 4 #################
+     Fake news scrolling, add badges, choice of the author
+  */
+  else if(scene == 4) {
+    
+    if(scene != old_scene) {  // setup new scene
+      println("SCENE 4");
+      
+      old_scene = scene;
+      
+      
+    }
+    else {
+
+    }
+  }
+  
   
 }
