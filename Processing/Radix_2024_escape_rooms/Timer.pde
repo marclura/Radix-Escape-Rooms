@@ -14,10 +14,10 @@ void startTimer() {
   timer_active = true;
 }
 
-void timer() {
+void runTimer() {
   textFont(fontTimer);
   textAlign(CENTER);
-  fill(255, 0, 0);
+  noStroke();
   
   timer = countdown_duration * 60 * 1000 - (millis() - countdown_start_time);
   minutes = int(floor(timer / 1000 / 60));
@@ -34,7 +34,11 @@ void timer() {
     seconds_str = "00";
   }
   
-  text(minutes_str + ":" + seconds_str, width/2, height/2 + 300);
+  fill(255);
+  rect(beamer_x, 0, width/2, height);
+  
+  fill(0);
+  text(minutes_str + ":" + seconds_str, width/4 + beamer_x, height/2 + size_font_timer/3);
 }
 
 

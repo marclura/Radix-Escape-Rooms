@@ -34,7 +34,7 @@ void serialEvent(Serial Port) {
         Port.clear();
         Port.write("A");  // handshake return to Arduino
         println("Arduino is connected");
-        delay(3000);  // slowing down for the Arduino
+        delay(1000);  // slowing down for the Arduino
         serial_first_contact = true;
       }
     }

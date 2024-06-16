@@ -35,6 +35,7 @@ void relaysSpots(boolean status) {
 // Key coded pressed check
 boolean checkKeyCodedPressed(int k) {
   boolean pressed = false;
+  //println(key);
   if(keyPressed && key_released) {
     key_released = false;  // prevent events skipping
     if(key == CODED) {
@@ -49,6 +50,7 @@ boolean checkKeyCodedPressed(int k) {
 // Generic key pressed check
 boolean checkKeyPressed(char k) {
   boolean pressed = false;
+  //println(key);
   if(keyPressed && key_released) {
     key_released = false;  // prevent events skipping
     if(key == k) {
