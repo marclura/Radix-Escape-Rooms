@@ -1,42 +1,30 @@
-/* Scenes */
+/* SCENES */
 
-void scenePlay() {
-    if(current_scene == 0) {
-      println("Scene 1");
-      scene_active = true;
-      video_intro.play();
-      video_intro.jump(221);  // !!! ONLY FOR DEVV
+void playScene() {
+  
+  /* Scene 0:
+     Start, room on, spots off, logos on the screens
+  */
+  if(scene == 0) {
+    
+    if(scene != old_scene) {  // setup new scene
+      println("SCENE 0 active");
+      relaysRoom(true);
+      relaysSpots(true);
+      
+      screenUpdate("logo");
+      beamerUpdate("logo");
+      
+      old_scene = scene;
     }
-}
-
-
-void updateScene() {
- 
-  if(scene_active) {
-    if(current_scene == 0) scene0();
-    else if (current_scene == 1) scene1();
+    
   }
   
-}
-
-
-// video intro
-void scene0() {
-
-  set(0, 0, video_intro);  // display next video frame
-  
-  if(!timer_active && video_intro.time() >= timer_start_at_video_intro) {  // start the timer
-    startTimer();
+  /* Scene 1:
+     Entrance, input 
+  */
+  else if(scene == 1) {
+    
   }
-  
-  if(video_intro.time() >= video_intro.duration() - 0.1) {  // video over
-    scene_active = false;
-  }
-  
-}
-
-
-// 
-void scene1() {
   
 }

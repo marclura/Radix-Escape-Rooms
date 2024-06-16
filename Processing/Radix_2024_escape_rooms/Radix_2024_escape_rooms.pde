@@ -1,9 +1,30 @@
-/* Escape rooms - Radix 2024
- *
- * Marco Lurati
- * contact@marcolurati.ch
- *
- *
+/*
+
+Escape rooms - Radix 2024
+
+Author:
+Marco Lurati
+contact@marcolurati.ch
+
+Interface I/Os:
+# Arduino
+  Inputs:
+  - Buttons for navigation (D1 - D5)
+  - Sensors for the cards (A0 - A5)
+  Outputs:
+  - Relays Room  RR (D7)
+  - Relays Sports RS (D0)
+  - LEDs for the buttons (D8 - D12)
+# Remote Logitech
+  - LEFT
+  - RIGHT
+# Numpad keys
+  - Numbers
+  - Enter key
+# Beamer
+# Screen
+# Audio output
+
  */
  
 // Video library
@@ -12,63 +33,74 @@ import processing.video.*;
 // Sound library
 import processing.sound.*;
 
+// Serial library
+import processing.serial.*; 
 
-// Video data
-Movie video_intro;
 
-// Scenes
-int current_scene = 0;
-boolean scene_active = false;
+// Scene management
+int scene = 0;
+int old_scene = -1;
+
+// Contents
 
 // PImage
-PImage galaxi_dream_logo;
+PImage logo;
+PImage fake_news_1;
+PImage fake_news_2;
+PImage fake_news_3;
+PImage fake_news_4;
+PImage fake_news_5;
+PImage badges;
 
 // Fonts
 PFont fontTimer;
 int sizefontTimer = 400;
 
+// Settings
+int screen_x = 0;  // screen x position in fullscreen(SPAN) mode
+int beamer_x = 1920;  // beamer x position in fullscreen(SPAN) mode
+
+// Serial
+int serial_baudrate = 115200;
+boolean serial_first_contact = false;  // communication initialization
+Serial SerialPort;  // create a object for the serial class
+byte serial_port_index = 1;  // current serial port index
+boolean serial_reset = false;  // execute arduino reset
+
 // Timer
 int countdown_duration = 20;  // minutes
 int timer_start_at_video_intro = 5740 / 30; // seconds (5740 frames)
 
+// development
+boolean dev = true;
+
 
 void settings() {
-  size(1920, 1080, P2D);
-  //fullScreen(2);
+  if(dev) {
+    size(1920*2, 1080);
+  }
+  else {
+    fullScreen(SPAN);
+  }
   smooth(10);
 }
 
 void setup() {
-  // video loading
-  video_intro = new Movie(this, "EM_SaturlandiaOFF.mp4");  // EM_VIDEO_INIZIALE_S
   
   // font loading
   fontTimer = createFont("TheFuture-Black.otf", sizefontTimer);
   
-  // Background image
+  // Load images
+  loadImages();
   
+  // Serial init
+  serialInit();
   
 
 }
 
 void draw() {
-   
-  updateScene();
   
-  if(timer_active) {
-    if(!scene_active && current_scene == 0) background(0);
-    timer();
-  }
-  
-}
+  playScene();  
 
-void movieEvent(Movie m) {  // read new available frames
-  m.read();
-}
-
-
-void keyPressed() {
-  if (keyCode == RIGHT && !scene_active) {
-    scenePlay();
-  }
 }
