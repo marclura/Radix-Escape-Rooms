@@ -12,4 +12,14 @@ From the RegEdit change the value to 2 of the "InitialKeyboardIndicators" found 
 
 ![alt text](https://github.com/marclura/Radix-Escape-Rooms/raw/master/Setup%20process/num_lock_win10_setup.png "Num lock win10 regedit")
 
-If it doesn't help, go ahead and change it for every other user HKEY_USERS\"any other users"\Control Panel\Keyboard\InitialKeyboardIndicators to 2.
+Go ahead and change it for every other user HKEY_USERS\"any other users"\Control Panel\Keyboard\InitialKeyboardIndicators to 2.
+
+**Disable fast startup**
+
+From Control Panel\Hardware and Sound\Power Options\System Settings disable the "Turn on fast startup option"
+
+**Reboot setup**
+
+Do the previous steps (BIOS, RegEdit, Fast Startup), then power off the PC, power it on and activate the Num Lock key if not active **before login**.
+
+Login, and power off and on the PC. Num Lock should now stay on all the time.
