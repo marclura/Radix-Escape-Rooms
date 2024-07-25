@@ -20,6 +20,11 @@ Serial protocol
 
 The serial protocol is always composed by a 2byte (string)command followed by a "," and the (int)state. Example: "RR,1"
 
+Commands:
+NAV,x   x=1: navigation true, x=0, navigation false
+RR,x    x=1: RR on, x=0: RR off
+RS,x    x=1: RS on, x=0: RS off   
+
 */
 
 struct Interface {
@@ -32,10 +37,10 @@ struct Interface {
 Interface interface[] = {
   {"RR", 0, 7, 'o'},
   {"RS", 0, 0, 'o'},
-  {"LED_NEXT", 0, 12, 'o'},
-  {"LED_BACK", 0, 11, 'o'},
-  {"BTN_NEXT", 0, 5, 'i'},
-  {"BTN_BACK", 0, 4, 'i'},
+  {"LED_NEXT", 0, 8, 'o'},
+  {"LED_BACK", 0, 9, 'o'},
+  {"BTN_NEXT", 0, 1, 'i'},
+  {"BTN_BACK", 0, 2, 'i'},
   {"S0", 0, A0, 's'},
   {"S1", 0, A1, 's'},
   {"S2", 0, A2, 's'},
