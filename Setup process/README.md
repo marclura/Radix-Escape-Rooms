@@ -22,4 +22,4 @@ From Control Panel\Hardware and Sound\Power Options\System Settings disable the 
 
 Do the previous steps (BIOS, RegEdit, Fast Startup), then power off the PC, power it on and activate the Num Lock key if not active **before login**.
 
-Login, and power off and on the PC. Num Lock should now stay on all the time.
+Login on every account you need the Num Lock active, activate it, and power off and on the PC. Num Lock should now stay on all the time now.
