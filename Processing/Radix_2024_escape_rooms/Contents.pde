@@ -4,9 +4,8 @@ void loadImages() {
   logo = loadImage("logo.png");
   
   // random first image
-  int random_img_1 = int(random(1, 4));
   String image_1 = "EM_fake_news1.jpg";
-  switch(random_img_1) {
+  switch(fake_news_version) {
     case 1:
       image_1 = "EM_fake_news1.jpg";
       break;
@@ -39,4 +38,29 @@ void loadSounds() {
   auto_distruction_2min = new SoundFile(this, "EM_AUDIO_07.mp3");
   auto_distruction_1min = new SoundFile(this, "EM_AUDIO_08.mp3");
   println("loadSounds() done");
+}
+
+void loadFakeNewsVersion() {
+  println("loadFakeNewsVersion()");
+  
+  String file_name = "fake_news_version.txt";
+  String br[] = loadStrings(file_name);
+  
+  // Print each value, from 0 to 255 
+  for (int i = 0; i < br.length; i++) { 
+    println("read fake_news_version: " + br[i]);
+    fake_news_version = int(br[i]);
+  }
+  
+  if(fake_news_version == 3) {
+    fake_news_version = 0;
+  }
+  else {
+    fake_news_version++;
+  }
+  
+  String bw[] = {str(fake_news_version)};
+  println("read fake_news_version: " + bw[0]); 
+  saveStrings(file_name, bw);
+  
 }

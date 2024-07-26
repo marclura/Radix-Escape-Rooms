@@ -37,7 +37,7 @@ import processing.sound.*;
 import processing.serial.*; 
 
 // Scene management
-int scene = 0;
+int scene = 0;  // starts form 0
 int old_scene = -1;
 
 // Contents
@@ -96,12 +96,14 @@ String message_wrong_password = "incorrect, try again";
 String message_correct_password = "access granted";
 byte current_fake_news = 1;
 byte fake_news_count = 4;
+int fake_news_version = 1;  // every playback, will show a different fake news 1, so groups won't share informations
 boolean check_next_scene = false;
 String current_playing = "";
 String next_playing = "";
 
+
 // development
-boolean dev = false;
+boolean dev = true;
 
 
 void settings() {
@@ -119,12 +121,17 @@ void setup() {
   background(0);
   
   // hide cursor
-  noCursor();
+  if(!dev) {
+    noCursor();
+  }
   
   // font loading
   println("Font loading...");
   fontTimer = createFont("TheFuture-Black.otf", size_font_timer);
   fontPassword = createFont("TheFuture-Black.otf", size_font_password);
+  
+  // Load fake news version
+  loadFakeNewsVersion();
   
   // loading screen
   screenUpdate("loading");
@@ -140,6 +147,8 @@ void setup() {
   
   // Load Sounds
   loadSounds();
+  
+  
   
 }
 

@@ -13,7 +13,7 @@ void updateNavigation() {
     interface[id_led_next].state = 1;
     digitalWrite(interface[id_led_next].pin, interface[id_led_next].state);
 
-    interface[id_led_back].state = 1;
+    interface[id_led_back].state = 0;
     digitalWrite(interface[id_led_back].pin, interface[id_led_back].state);
 
     old_navigation_active = true;
