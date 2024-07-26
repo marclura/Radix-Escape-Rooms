@@ -12,8 +12,8 @@ void playScene() {
       relaysRoom(true);
       relaysSpots(false);
       
-      screenUpdate("logo");
-      beamerUpdate("logo");
+      screenUpdate("black");
+      beamerUpdate("black");
       
       old_scene = scene;
     }

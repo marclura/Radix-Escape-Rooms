@@ -37,7 +37,7 @@ import processing.sound.*;
 import processing.serial.*; 
 
 // Scene management
-int scene = 3;
+int scene = 0;
 int old_scene = -1;
 
 // Contents
@@ -48,7 +48,6 @@ PImage fake_news_1;
 PImage fake_news_2;
 PImage fake_news_3;
 PImage fake_news_4;
-PImage fake_news_5;
 PImage badges;
 
 // Videos
@@ -79,6 +78,7 @@ Serial SerialPort;  // create a object for the serial class
 byte serial_port_index = 1;  // current serial port index
 boolean serial_reset = false;  // execute arduino reset
 String income_serial_val = "";
+boolean serial_event_listening = false;  // stop the serialEvent to work when Arduino is resetting
 
 // Timer
 int countdown_duration = 20;  // minutes
@@ -94,14 +94,14 @@ String scene_2_password = "123456";
 String input_password = "";
 String message_wrong_password = "incorrect, try again";
 String message_correct_password = "access granted";
-byte current_fake_news = 3;
-byte fake_news_count = 5;
+byte current_fake_news = 1;
+byte fake_news_count = 4;
 boolean check_next_scene = false;
 String current_playing = "";
 String next_playing = "";
 
 // development
-boolean dev = true;
+boolean dev = false;
 
 
 void settings() {
@@ -116,16 +116,22 @@ void settings() {
 
 void setup() {
   
+  background(0);
+  
   // hide cursor
   noCursor();
   
+  // font loading
+  println("Font loading...");
+  fontTimer = createFont("TheFuture-Black.otf", size_font_timer);
+  fontPassword = createFont("TheFuture-Black.otf", size_font_password);
+  
+  // loading screen
+  screenUpdate("loading");
+    
   // Serial init
   serialInit();
   
-  // font loading
-  fontTimer = createFont("TheFuture-Black.otf", size_font_timer);
-  fontPassword = createFont("TheFuture-Black.otf", size_font_password);
-    
   // Load images
   loadImages();
   

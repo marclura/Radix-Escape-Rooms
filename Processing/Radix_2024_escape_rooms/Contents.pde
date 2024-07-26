@@ -2,11 +2,26 @@
 
 void loadImages() {
   logo = loadImage("logo.png");
-  fake_news_1 = loadImage("EM_fake_news1.jpg");
+  
+  // random first image
+  int random_img_1 = int(random(1, 4));
+  String image_1 = "EM_fake_news1.jpg";
+  switch(random_img_1) {
+    case 1:
+      image_1 = "EM_fake_news1.jpg";
+      break;
+    case 2:
+      image_1 = "EM_fake_news1A.jpg";
+      break;
+    case 3:
+      image_1 = "EM_fake_news1B.jpg";
+      break;
+  }
+  
+  fake_news_1 = loadImage(image_1);
   fake_news_2 = loadImage("EM_fake_news2.jpg");
   fake_news_3 = loadImage("EM_fake_news3.jpg");
   fake_news_4 = loadImage("EM_fake_news4.jpg");
-  fake_news_5 = loadImage("EM_fake_news5.jpg");
   badges = loadImage("EM_badge.jpg");
   println("loadImages() done");
 }
