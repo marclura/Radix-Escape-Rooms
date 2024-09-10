@@ -67,6 +67,9 @@ PFont fontTimer, fontPassword;
 int size_font_timer = 400;
 int size_font_password = 100;
 
+// Setup
+boolean get_focus = false;  // windows focus flag
+
 // Settings
 int screen_x = 0;  // screen x position in fullscreen(SPAN) mode
 int beamer_x = 1920;  // beamer x position in fullscreen(SPAN) mode
@@ -103,7 +106,7 @@ String next_playing = "";
 
 
 // development
-boolean dev = true;
+boolean dev = false;
 
 
 void settings() {
@@ -118,6 +121,8 @@ void settings() {
 
 void setup() {
   
+  frameRate(30);
+  
   background(0);
   
   // hide cursor
@@ -129,6 +134,8 @@ void setup() {
   println("Font loading...");
   fontTimer = createFont("TheFuture-Black.otf", size_font_timer);
   fontPassword = createFont("TheFuture-Black.otf", size_font_password);
+  
+  
   
   // Load fake news version
   loadFakeNewsVersion();
@@ -153,6 +160,11 @@ void setup() {
 }
 
 void draw() {
+  
+  if(!get_focus) {
+    ((java.awt.Canvas) surface.getNative()).requestFocus();
+    get_focus = true;
+  }
   
   playScene();
   

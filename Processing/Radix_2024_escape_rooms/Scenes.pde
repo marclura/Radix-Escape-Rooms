@@ -35,7 +35,7 @@ void playScene() {
       
       // video playback captain and worlds
       movie_scene_1.play();
-      if(dev) movie_scene_1.jump(movie_scene_1.duration() - 2);
+      movie_scene_1.jump(movie_scene_1.duration() - 5);
       delay(5);
       
     }

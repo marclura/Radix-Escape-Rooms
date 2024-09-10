@@ -8,9 +8,11 @@ boolean movieDonePlaying(Movie m) {
     set(beamer_x, 0, m);
   }
   else {
-    // rewind the movie
-    movie_scene_1.pause();
-    movie_scene_1.jump(0);
+    if(movie_scene_1.time() != 0) {
+      // rewind the movie
+      movie_scene_1.pause();
+      movie_scene_1.jump(0);
+    }
     movie_done = true;
   }
   
