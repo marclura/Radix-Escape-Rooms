@@ -58,6 +58,7 @@ void loadFakeNewsVersion() {
   else {
     fake_news_version++;
   }
+
   
   String bw[] = {str(fake_news_version)};
   println("read fake_news_version: " + bw[0]); 

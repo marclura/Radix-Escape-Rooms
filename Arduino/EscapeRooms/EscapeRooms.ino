@@ -22,8 +22,10 @@ The serial protocol is always composed by a 2byte (string)command followed by a 
 
 Commands:
 NAV,x   x=1: navigation true, x=0, navigation false
-RR,x    x=1: RR on, x=0: RR off
-RS,x    x=1: RS on, x=0: RS off   
+RR,x    x=1: on, x=0: off
+RS,x    x=1: on, x=0: off
+LED_NEXT,x    x=1: on, x=0: off
+LED_BACK,x    x=1: on, x=0: off
 
 */
 
