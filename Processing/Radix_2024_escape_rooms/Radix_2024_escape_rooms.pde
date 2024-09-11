@@ -34,10 +34,16 @@ import processing.video.*;
 import processing.sound.*;
 
 // Serial library
-import processing.serial.*; 
+import processing.serial.*;
+
+// development
+boolean dev = true;
+
+// Current station
+int station_number = 1;  // 1  to 3
 
 // Scene management
-int scene = 0;  // starts form 0
+int scene = 2;  // starts form 0
 int old_scene = -1;
 
 // Contents
@@ -49,6 +55,11 @@ PImage fake_news_2;
 PImage fake_news_3;
 PImage fake_news_4;
 PImage badges;
+PImage instructions_badges;
+PImage instructions_leave;
+PImage instructions_world_1;
+PImage instructions_world_2;
+PImage instructions_world_3;
 
 // Videos
 Movie movie_scene_1;
@@ -73,6 +84,8 @@ boolean get_focus = false;  // windows focus flag
 // Settings
 int screen_x = 0;  // screen x position in fullscreen(SPAN) mode
 int beamer_x = 1920;  // beamer x position in fullscreen(SPAN) mode
+int screen_width = 1920;  // px
+int screen_height = 1080;  // px
 
 // Serial
 int serial_baudrate = 921600;
@@ -93,29 +106,16 @@ int millis_delay = 0;  // seconds
 boolean key_released = true;  // proper events triggering
 
 // Scenes settings
-String scene_2_password = "123456";
-String input_password = "";
-String message_wrong_password = "incorrect, try again";
-String message_correct_password = "access granted";
 byte current_fake_news = 1;
 byte fake_news_count = 4;
-int fake_news_version = 1;  // every playback, will show a different fake news 1, so groups won't share informations
+int fake_news_version = 1;  // every playback, will show a different fake news, so groups won't share informations
 boolean check_next_scene = false;
 String current_playing = "";
 String next_playing = "";
 
 
-// development
-boolean dev = false;
-
-
 void settings() {
-  if(dev) {
-    size(1920*2, 1080);
-  }
-  else {
-    fullScreen(SPAN);
-  }
+  fullScreen(SPAN);
   smooth(10);
 }
 
@@ -126,9 +126,7 @@ void setup() {
   background(0);
   
   // hide cursor
-  if(!dev) {
-    noCursor();
-  }
+  noCursor();
   
   // font loading
   println("Font loading...");
@@ -154,6 +152,8 @@ void setup() {
   
   // Load Sounds
   loadSounds();
+  
+  delay(1000);
   
   
   

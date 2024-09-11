@@ -1,18 +1,17 @@
 /* Content management */
 
 void loadImages() {
-  logo = loadImage("logo.png");
+  if(station_number == 1) logo = loadImage("EM_schermate_monitor_logo_blu.jpg");
+  else if(station_number == 2) logo = loadImage("EM_schermate_monitor_logo_rosso.jpg");
+  if(station_number == 3) logo = loadImage("EM_schermate_monitor_logo_verde.jpg");
   
   // random first image
-  String image_1 = "EM_fake_news1.jpg";
+  String image_1 = "EM_fake_news1_A.jpg";
   switch(fake_news_version) {
     case 1:
-      image_1 = "EM_fake_news1.jpg";
-      break;
-    case 2:
       image_1 = "EM_fake_news1A.jpg";
       break;
-    case 3:
+    case 2:
       image_1 = "EM_fake_news1B.jpg";
       break;
   }
@@ -22,6 +21,11 @@ void loadImages() {
   fake_news_3 = loadImage("EM_fake_news3.jpg");
   fake_news_4 = loadImage("EM_fake_news4.jpg");
   badges = loadImage("EM_badge.jpg");
+  instructions_badges = loadImage("EM_schermate_monitor_badge.jpg");
+  instructions_leave = loadImage("EM_schermate_monitor_allarme.jpg");;
+  instructions_world_1 = loadImage("EM_schermate_monitor_scegliere_mondo_00.jpg");;
+  instructions_world_2 = loadImage("EM_schermate_monitor_scegliere_mondo_01.jpg");;
+  instructions_world_3 = loadImage("EM_schermate_monitor_scegliere_mondo_02.jpg");;
   println("loadImages() done");
 }
 
@@ -48,16 +52,16 @@ void loadFakeNewsVersion() {
   
   // Print each value, from 0 to 255 
   for (int i = 0; i < br.length; i++) { 
-    println("read fake_news_version: " + br[i]);
+    println("old fake_news_version: " + br[i]);
     fake_news_version = int(br[i]);
   }
   
-  if(fake_news_version == 3) {
-    fake_news_version = 0;
+  if(fake_news_version == 1) {
+    fake_news_version = 2;
   }
-  else {
-    fake_news_version++;
-  }
+  else fake_news_version = 1;
+  
+  println("new fake_news_version: " + fake_news_version);
 
   
   String bw[] = {str(fake_news_version)};

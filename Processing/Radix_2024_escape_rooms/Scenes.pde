@@ -12,8 +12,8 @@ void playScene() {
       relaysRoom(true);
       relaysSpots(false);
       
-      screenUpdate("black");
-      beamerUpdate("black");
+      screenUpdate("logo");
+      beamerUpdate("logo");
       
       old_scene = scene;
     }
@@ -35,12 +35,18 @@ void playScene() {
       
       // video playback captain and worlds
       movie_scene_1.play();
-      movie_scene_1.jump(movie_scene_1.duration() - 5);
+      if(dev) movie_scene_1.jump(movie_scene_1.duration() - 15);
+      
+      // screen instructions
+      screenUpdate("instructions_world_3");
+      
       delay(5);
       
     }
     else {
       if(movieDonePlaying(movie_scene_1)) {
+        beamerUpdate("instructions_world_1");
+        screenUpdate("instructions_world_2");
         if(checkKeyCodedPressed(RIGHT)) scene++;
       }
     }
@@ -59,8 +65,11 @@ void playScene() {
       
       // video playback captain
       movie_scene_2.play();
-      if(dev) movie_scene_2.jump(movie_scene_2.duration() - 2);
+      if(dev) movie_scene_2.jump(movie_scene_2.duration() - 10);
       delay(5);
+      
+      // screen
+      screenUpdate("black");
       
       // then, countdown beamer and password input on keypad
 
@@ -120,7 +129,10 @@ void playScene() {
            screenUpdate("fake_news_" + current_fake_news);
            
            serialSend("LED_BACK", 1);
-           if(current_fake_news == fake_news_count) serialSend("LED_NEXT", 0);
+           if(current_fake_news == fake_news_count) {
+             screenUpdate("instructions_badges");
+             serialSend("LED_NEXT", 0);
+           }
            else serialSend("LED_NEXT", 1);
          }
       }

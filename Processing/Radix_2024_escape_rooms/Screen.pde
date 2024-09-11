@@ -5,8 +5,15 @@ void screenUpdate(String content) {
   if(content.equals("logo_stanby")) set(screen_x, 0, logo);
   else if(content.equals("black")) {
     fill(0);
-    rect(0, 0, width, height);
+    rect(screen_x, 0, width, height);
   }
+  else if(content.equals("white")) {
+    fill(255);
+    rect(screen_x, 0, width, height);
+  }
+  else if(content.equals("logo")) image(logo, screen_x, 0, width/2, height);
+  else if(content.equals("instructions_world_2")) image(instructions_world_2, screen_x, 0, width/2, height);
+  else if(content.equals("instructions_world_3")) image(instructions_world_3, screen_x, 0, width/2, height);
   else if(content.equals("fake_news_1")) image(fake_news_1, screen_x, 0, width/2, height);
   else if(content.equals("fake_news_2")) image(fake_news_2, screen_x, 0, width/2, height);
   else if(content.equals("fake_news_3")) image(fake_news_3, screen_x, 0, width/2, height);
