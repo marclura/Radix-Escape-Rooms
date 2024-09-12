@@ -83,6 +83,7 @@ int size_font_password = 100;
 
 // Setup
 boolean get_focus = false;  // windows focus flag
+boolean first_draw = false;  // run the draw first before playing anything to define the canvas size 
 
 // Settings
 int screen_x = 0;  // screen x position in fullscreen(SPAN) mode
@@ -185,40 +186,45 @@ void setup() {
 
 void draw() {
   
-  if(!get_focus) {
-    ((java.awt.Canvas) surface.getNative()).requestFocus();  // focus the window on Processing to make keys work
-    get_focus = true;
-    delay(1000);  // add delay to prevent errors on the canvas size not loaded
-  }
+  if(!first_draw) first_draw = true;
+  else {
   
-  checkCallbackActions();
-  
-  //checkIfResetGame();
-  
+    if(!get_focus) {
+      ((java.awt.Canvas) surface.getNative()).requestFocus();  // focus the window on Processing to make keys work
+      get_focus = true;
+      delay(1000);  // add delay to prevent errors on the canvas size not loaded
+    }
     
-  if(main_timer) {
-    if(runMainTimer(main_timer_duration)) {  // main timer not over
-      runAutosdistruction();
+    checkCallbackActions();
+    
+    //checkIfResetGame();
+    
+      
+    if(main_timer) {
+      if(runMainTimer(main_timer_duration)) {  // main timer not over
+        runAutosdistruction();
+      }
+      else {  // main timer over
+        println("MAIN TIMER OVER -> ESCAPE");
+        main_timer = false;
+        scene = 4;
+      }
     }
-    else {  // main timer over
-      println("MAIN TIMER OVER -> ESCAPE");
-      main_timer = false;
-      scene = 4;
+    
+    if(escape_timer) {
+      if(!runMainTimer(escape_timer_duration) || checkKeyCodedPressed(RIGHT)) {  // escape timer is over or button pressed
+        println("ESCAPE TIMER OVER -> GAME END");
+        escape_timer = false;
+        scene = 5;
+      }
     }
+    
+    if(bages_choice_activated) runBadgeChoiceAudio();  // sounds tab
+    
+    // play a the end to update the screens
+    playScene();
+  
   }
-  
-  if(escape_timer) {
-    if(!runMainTimer(escape_timer_duration)) {  // escape timer is over
-      println("ESCAPE TIMER OVER -> GAME END");
-      escape_timer = false;
-      scene = 5;
-    }
-  }
-  
-  if(bages_choice_activated) runBadgeChoiceAudio();  // sounds tab
-  
-  // play a the end to update the screens
-  playScene();
   
 
 }

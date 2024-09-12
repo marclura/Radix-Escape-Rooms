@@ -190,7 +190,7 @@ void playScene() {
     }
     else {
       if(oneMinuteCountdown()) {
-        
+ 
         switch(next_autodestruction_minute) {
           case 2:
             startOneMinuteCountdown();

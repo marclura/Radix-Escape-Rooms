@@ -40,7 +40,12 @@ void loadImages() {
 }
 
 void loadVideos() {
-  movie_scene_1 = new Movie(this, "EM_AUDIOVIDEO_01.mp4");
+  
+  if(station_number == 1) movie_scene_1 = new Movie(this, "1_BLU.mp4");
+  else if(station_number == 2) movie_scene_1 = new Movie(this, "2_RED.mp4");
+  else if(station_number == 3) movie_scene_1 = new Movie(this, "3_GREEN.mp4");
+  else movie_scene_1 = new Movie(this, "1_BLU.mp4");
+  
   movie_scene_2 = new Movie(this, "EM_AUDIOVIDEO_04.mp4");
   println("loadVideos() done");
 }
