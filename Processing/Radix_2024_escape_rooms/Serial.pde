@@ -61,7 +61,7 @@ void serialEvent(Serial Port) {
 // send command with status via serial
 void serialSend(String command, int state) {
   
-  println("serialSend: " + command + "," + state);
+  // println("serialSend: " + command + "," + state);
   
   SerialPort.write(command + "," + state);
   SerialPort.write("\n");
@@ -71,7 +71,7 @@ void serialSend(String command, int state) {
 
 // received serial data
 void serialReceived(String val) {
-  println("serialReceived: " + val);
+  // println("serialReceived: " + val);
   income_serial_val = val;
 }
 

@@ -18,7 +18,9 @@ void screenUpdate(String content) {
   else if(content.equals("fake_news_2")) image(fake_news_2, screen_x, 0, width/2, height);
   else if(content.equals("fake_news_3")) image(fake_news_3, screen_x, 0, width/2, height);
   else if(content.equals("fake_news_4")) image(fake_news_4, screen_x, 0, width/2, height);
+  else if(content.equals("instructions_badges")) image(instructions_badges, screen_x, 0, width/2, height);
   else if(content.equals("badges")) set(screen_x, 0, badges);
+  else if(content.equals("instructions_leave")) set(screen_x, 0, instructions_leave);
   else if(content.equals("loading")) {
     println("Loading screen...");
     textFont(fontTimer);

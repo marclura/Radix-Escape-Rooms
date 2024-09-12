@@ -20,8 +20,18 @@ void loadImages() {
   fake_news_2 = loadImage("EM_fake_news2.jpg");
   fake_news_3 = loadImage("EM_fake_news3.jpg");
   fake_news_4 = loadImage("EM_fake_news4.jpg");
-  badges = loadImage("EM_badge.jpg");
   instructions_badges = loadImage("EM_schermate_monitor_badge.jpg");
+  
+  
+  // load the array list for the fake news scene
+  fake_news_list[0] = "fake_news_1";
+  fake_news_list[1] = "fake_news_2";
+  fake_news_list[2] = "fake_news_3";
+  fake_news_list[3] = "fake_news_4";
+  fake_news_list[4] = "instructions_badges";
+  
+  
+  badges = loadImage("EM_badge.jpg");  
   instructions_leave = loadImage("EM_schermate_monitor_allarme.jpg");;
   instructions_world_1 = loadImage("EM_schermate_monitor_scegliere_mondo_00.jpg");;
   instructions_world_2 = loadImage("EM_schermate_monitor_scegliere_mondo_01.jpg");;
@@ -62,10 +72,8 @@ void loadFakeNewsVersion() {
   else fake_news_version = 1;
   
   println("new fake_news_version: " + fake_news_version);
-
   
   String bw[] = {str(fake_news_version)};
-  println("read fake_news_version: " + bw[0]); 
   saveStrings(file_name, bw);
   
 }

@@ -76,14 +76,13 @@ void playScene() {
     }
     else {
       if(movieDonePlaying(movie_scene_2)) {
-        
-        // autodistruction sound loop
-        if(!auto_distruction_activated.isPlaying()) {
-          auto_distruction_activated.loop();
-        }
-        
+                
         // countdown on beamer
-        if(!timer_active) startTimer();
+        if(!main_timer) {
+          main_timer = true;
+          startTimer();
+          playback_autodestruction = true;
+        }
         
         // password activate
         displayPassword();
@@ -113,7 +112,7 @@ void playScene() {
       
       activateNavigationButtons(true);  
       
-      screenUpdate("fake_news_" + current_fake_news);
+      screenUpdate(fake_news_list[current_fake_news]);
       
       check_next_scene = false;
       
@@ -124,25 +123,24 @@ void playScene() {
       String val = getIncomeSerialVal();
       
       if(val.equals("NEXT")) {
-         if(current_fake_news < fake_news_count) {
+         if(current_fake_news < fake_news_count - 1) {
            current_fake_news++;
-           screenUpdate("fake_news_" + current_fake_news);
-           
+           println("current_fake_news: " + current_fake_news);
+           screenUpdate(fake_news_list[current_fake_news]);
            serialSend("LED_BACK", 1);
-           if(current_fake_news == fake_news_count) {
-             screenUpdate("instructions_badges");
-             serialSend("LED_NEXT", 0);
-           }
+           
+           if(current_fake_news == fake_news_count - 1) serialSend("LED_NEXT", 0);
            else serialSend("LED_NEXT", 1);
          }
       }
       else if(val.equals("BACK")) {
-         if(current_fake_news > 1) {
+         if(current_fake_news > 0) {
            current_fake_news--;
-           screenUpdate("fake_news_" + current_fake_news);
+           println("current_fake_news: " + current_fake_news);
+           screenUpdate(fake_news_list[current_fake_news]);
            
            serialSend("LED_NEXT", 1);
-           if(current_fake_news == 1) serialSend("LED_BACK", 0);
+           if(current_fake_news == 0) serialSend("LED_BACK", 0);
            else serialSend("LED_BACK", 1);
          }
       }
@@ -150,16 +148,13 @@ void playScene() {
         activateNavigationButtons(false);
         screenUpdate("badges");
         delay(1000);
-        auto_distruction_activated.amp(0.2);
-        choice_moment.play();
-        while(choice_moment.isPlaying()) {
-          delay(100);
-        }
-        auto_distruction_activated.amp(1.0);
-        check_next_scene = true;
+        bages_choice_activated = true;
       }
       else if(check_next_scene) {
-        if(checkKeyCodedPressed(RIGHT)) scene++;
+        if(checkKeyCodedPressed(RIGHT)) {
+          scene++;
+          main_timer = false;  // stop the main timer
+        }
       }
     }
   }
@@ -178,31 +173,72 @@ void playScene() {
       
       relaysSpots(true);
       
-      startSoundPlaying(auto_distruction_3min, "3min");
+      main_timer = false;
+     
+      
+      beamerUpdate("instructions_leave");
+      screenUpdate("instructions_leave");
+      
+      startOneMinuteCountdown();
+      next_autodestruction_minute = 2;
+      
+      escape_timer = true;
+      startTimer();
+      
+      startSoundPlaying(auto_distruction_3min, null);
       
     }
     else {
-      
-      if(current_playing.equals("3min")) checkSoundPlaying(auto_distruction_3min, "2min");
-      else if(current_playing.equals("2min")) checkSoundPlaying(auto_distruction_2min, "1min");
-      else if(current_playing.equals("1min")) checkSoundPlaying(auto_distruction_1min, "end_game");
-      
-      if(millisTimerElapsed()) {
-        if(next_playing.equals("2min")) {
-          startSoundPlaying(auto_distruction_2min, "2min");
-        }
-        else if(next_playing.equals("1min")) {
-          startSoundPlaying(auto_distruction_1min, "1min");
-        }
-        else if(next_playing.equals("end_game")) {
-          auto_distruction_activated.jump(0);
-          auto_distruction_activated.pause();
-          scene = 0;
+      if(oneMinuteCountdown()) {
+        
+        switch(next_autodestruction_minute) {
+          case 2:
+            startOneMinuteCountdown();
+            startSoundPlaying(auto_distruction_2min, null);
+            next_autodestruction_minute = 1;
+            break;
+          case 1:
+            startOneMinuteCountdown();
+            startSoundPlaying(auto_distruction_1min, null);
+            next_autodestruction_minute = 0;
+            break;
+          case 0:  // end of the game            
+            scene = 5;
+            break;      
         }
       }
+
+    }
+    
+  }
+  /* ################  SCENE 5 #################
+     End of the game
+  */
+  else if(scene == 5) {
+    if(scene != old_scene) {  // setup new scene
+      println("SCENE 5");
+      old_scene = scene;
+      
+      println("END OF THE GAME");
+      relaysSpots(false);
+      relaysRoom(true);
+      
+      // Message
+      fill(255);
+      rect(0, 0, width, height);
+      textFont(fontTimer);
+      textSize(75);
+      textAlign(CENTER);
+      fill(0);
+      text("Fine del gioco. Grazie per la partecipazione.", width/4, height/2);
+      text("Fine del gioco. Grazie per la partecipazione.", width/4*3, height/2);
       
     }
+    
+    if(checkKeyCodedPressed(RIGHT)) {
+      println("Game resetted");
+      resetGame();
+    }
   }
-  
   
 }

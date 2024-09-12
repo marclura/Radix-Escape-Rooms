@@ -43,7 +43,7 @@ boolean dev = true;
 int station_number = 1;  // 1  to 3
 
 // Scene management
-int scene = 2;  // starts form 0
+int scene = 0;  // starts form 0
 int old_scene = -1;
 
 // Contents
@@ -61,6 +61,8 @@ PImage instructions_world_1;
 PImage instructions_world_2;
 PImage instructions_world_3;
 
+String[] fake_news_list = new String[5];
+
 // Videos
 Movie movie_scene_1;
 Movie movie_scene_2;
@@ -71,6 +73,7 @@ SoundFile choice_moment;
 SoundFile auto_distruction_3min;
 SoundFile auto_distruction_2min;
 SoundFile auto_distruction_1min;
+SoundFile current_playing;
 
 
 // Fonts
@@ -97,21 +100,40 @@ String income_serial_val = "";
 boolean serial_event_listening = false;  // stop the serialEvent to work when Arduino is resetting
 
 // Timer
-int countdown_duration = 20;  // minutes
+int main_timer_duration = 20;  // minutes, default: 20
 int timer_start_at_video_intro = 5740 / 30; // seconds (5740 frames)
 int old_millis = 0;  // ms
 int millis_delay = 0;  // seconds
+int start_one_minute_millis = 0;  // ms
+int one_minute_duration = 60; // seconds, default: 60
+int escape_timer_duration = 3; // minutes, default: 3
+
 
 // Keys management
 boolean key_released = true;  // proper events triggering
 
 // Scenes settings
-byte current_fake_news = 1;
-byte fake_news_count = 4;
+byte current_fake_news = 0;
+byte fake_news_count = 5;
 int fake_news_version = 1;  // every playback, will show a different fake news, so groups won't share informations
 boolean check_next_scene = false;
-String current_playing = "";
 String next_playing = "";
+int next_autodestruction_minute = 3;
+
+// Autodistruction
+int autodistruction_interval = 60;  // seconds, default: 60
+int old_millis_autodistruction = 0;
+
+// Game status
+boolean playback_autodestruction = false;
+boolean main_timer = false;
+boolean escape_timer = false;
+boolean bages_choice_activated = false;  // used to update the screen in the draw with the bades and play the audio
+String soundCallbackAtion = null;
+
+// Check reset game
+int reset_click_counter = 0;
+int last_click_millis = 0;
 
 
 void settings() {
@@ -126,14 +148,19 @@ void setup() {
   background(0);
   
   // hide cursor
-  noCursor();
+  if(!dev) noCursor();
+  
+  if(dev) {
+    autodistruction_interval = 20;  // seconds
+    main_timer_duration = 3;  // minutes
+    one_minute_duration = 5;  // seconds
+    escape_timer_duration = 1;  // minutes
+  }
   
   // font loading
   println("Font loading...");
   fontTimer = createFont("TheFuture-Black.otf", size_font_timer);
   fontPassword = createFont("TheFuture-Black.otf", size_font_password);
-  
-  
   
   // Load fake news version
   loadFakeNewsVersion();
@@ -153,25 +180,93 @@ void setup() {
   // Load Sounds
   loadSounds();
   
-  delay(1000);
-  
-  
   
 }
 
 void draw() {
   
   if(!get_focus) {
-    ((java.awt.Canvas) surface.getNative()).requestFocus();
+    ((java.awt.Canvas) surface.getNative()).requestFocus();  // focus the window on Processing to make keys work
     get_focus = true;
+    delay(1000);  // add delay to prevent errors on the canvas size not loaded
   }
   
+  checkCallbackActions();
+  
+  //checkIfResetGame();
+  
+    
+  if(main_timer) {
+    if(runMainTimer(main_timer_duration)) {  // main timer not over
+      runAutosdistruction();
+    }
+    else {  // main timer over
+      println("MAIN TIMER OVER -> ESCAPE");
+      main_timer = false;
+      scene = 4;
+    }
+  }
+  
+  if(escape_timer) {
+    if(!runMainTimer(escape_timer_duration)) {  // escape timer is over
+      println("ESCAPE TIMER OVER -> GAME END");
+      escape_timer = false;
+      scene = 5;
+    }
+  }
+  
+  if(bages_choice_activated) runBadgeChoiceAudio();  // sounds tab
+  
+  // play a the end to update the screens
   playScene();
   
-  if(timer_active) runTimer();
 
 }
 
 void movieEvent(Movie m) {
   m.read();
+}
+
+void checkCallbackActions() {
+  if(soundCallbackAtion != null && soundCallbackAtion.equals("playback_autodestruction")) {  // restart the playback of the autodestruction audio
+    if(!choice_moment.isPlaying()) {
+      playback_autodestruction = true;
+      soundCallbackAtion = null;
+    }
+  }
+}
+
+void resetGame() {
+  old_millis = 0;
+  millis_delay = 0;
+  start_one_minute_millis = 0;
+  input_password = msg_password;
+  current_fake_news = 0;
+  scene = 0;
+  check_next_scene = false;
+  next_playing = "";
+  next_autodestruction_minute = 3;
+  old_millis_autodistruction = 0;
+  playback_autodestruction = false;
+  main_timer = false;
+  bages_choice_activated = false;
+  soundCallbackAtion = null;
+  escape_timer = false;
+}
+
+void checkIfResetGame() {
+  if(checkKeyCodedPressed(LEFT)) {
+    reset_click_counter++;
+    last_click_millis = millis();
+  }
+  
+  if(millis() - last_click_millis > 5000) {
+    reset_click_counter = 0;  // reset
+  }
+  
+  if(reset_click_counter >= 5) {
+    reset_click_counter = 0;
+    resetGame();
+  }
+  
 }

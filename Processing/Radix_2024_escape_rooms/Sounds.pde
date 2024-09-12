@@ -1,21 +1,28 @@
 /* Sounds management */
 
-void checkSoundPlaying(SoundFile sound, String next) {
-  
-  if(sound.isPlaying() && sound.position() > sound.duration() - 0.1) {
-    println("stoppedPlaying: " + current_playing);
-    sound.jump(0);
-    sound.pause();
-    auto_distruction_activated.amp(1.0);
-    current_playing = "";
-    next_playing = next;
+void startSoundPlaying(SoundFile sound, String callback) {
+  if(current_playing != null && current_playing != sound) {
+    current_playing.stop();
   }
+  sound.amp(1.0);
+  sound.play();
+  current_playing = sound;
+  
+  soundCallbackAtion = callback;
 }
 
-void startSoundPlaying(SoundFile sound, String current) {
-  println("startSoundPlaying: " + current);
-  auto_distruction_activated.amp(0.2);
-  sound.play();
-  current_playing = current;
-  setMillisTimer(20);
+void runAutosdistruction() {
+  if(millis() - old_millis_autodistruction > autodistruction_interval * 1000) {
+    println("Play autodistruction audio");
+    if(playback_autodestruction) startSoundPlaying(auto_distruction_activated, null);
+    old_millis_autodistruction =  millis();  
+  }
+  
+}
+
+void runBadgeChoiceAudio() {
+  playback_autodestruction = false;
+  startSoundPlaying(choice_moment, "playback_autodestruction");
+  bages_choice_activated = false;
+  check_next_scene = true; 
 }
