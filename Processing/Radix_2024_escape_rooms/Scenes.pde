@@ -108,7 +108,7 @@ void playScene() {
       
       old_scene = scene;
       
-      delay(3000);
+      //delay(3000);
       
       activateNavigationButtons(true);  
       
@@ -201,10 +201,7 @@ void playScene() {
             startOneMinuteCountdown();
             startSoundPlaying(auto_distruction_1min, null);
             next_autodestruction_minute = 0;
-            break;
-          case 0:  // end of the game            
-            scene = 5;
-            break;      
+            break;     
         }
       }
 

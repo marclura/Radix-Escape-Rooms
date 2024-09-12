@@ -37,7 +37,7 @@ import processing.sound.*;
 import processing.serial.*;
 
 // development
-boolean dev = true;
+boolean dev = false;
 
 // Current station
 int station_number = 1;  // 1  to 3
