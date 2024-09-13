@@ -18,6 +18,11 @@
 - Disable all items in Privacy settings
 - Activate Windows
 
+### NumLock settings
+Run the `registry editor` as administrator, and go to this path `HKEY_USERS.Default\Control Panel\Keyboard`.
+Edit the `InitialKeyboardIndicators` to `2` to keep the NumLock on at startup.
+Check the other USERS for the same same entry and change it if it doesn't work with the indicated user.
+
 ### Windows Users
 - Create a new user without admin privileges and without password (the main auto-login account)
 - Add a password to the admin account
