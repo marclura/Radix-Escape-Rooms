@@ -19,9 +19,12 @@
 - Activate Windows
 
 ### NumLock settings
-Run the `registry editor` as administrator, and go to this path `HKEY_USERS.Default\Control Panel\Keyboard`.
-Edit the `InitialKeyboardIndicators` to `2` to keep the NumLock on at startup.
-Check the other USERS for the same same entry and change it if it doesn't work with the indicated user.
+- Run the `registry editor` as administrator, and go to this path `HKEY_CURRENT_USER\Control Panel\Keyboard` and `HKEY_USERS.Default\Control Panel\Keyboard`.
+- Check the other USERS for the same same entry and change it if it doesn't work with the indicated user.
+- Edit the `InitialKeyboardIndicators` to `2147483650`.
+- Switch ON the NumLock
+- Switch Off the computer (not Reboot, but power off).
+- Now it should stay on. It will keep the last current NumLock status before power off
 
 ### Windows Users
 - Create a new user without admin privileges and without password (the main auto-login account)
