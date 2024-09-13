@@ -13,3 +13,4 @@
 - Load the video, audio, etc. files in the Processing sketch data folder
 - Set the number of the escape room in the Processing sketch
 - Edit the `start.bat` file match your environment and place it in the folder that opens with the run commmand `shell:startup` (Win+R keys)
+- Once plugged all the screens etc, forse the audio output via the headphone jack (delete the other HDMI audio interfaces)
