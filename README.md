@@ -3,21 +3,28 @@
 
 ## Setup
 
-### Lattepanda
-- Create a new user without admin privileges and without password (the main auto-login account)
-- Add a password to the admin account
+### BIOS
 - Add a password to the BIOS (setup only)
+- Activate NumLock
+- Set "Power Off" after AC failure
+
+### Windows setup
+- Change the power settings to never power off the screen and the device
+- Change the power button behaviour to the option power off
 - Disable the Wifi
 - Disable the BLE
 - Remove unusued items form the Task Manager > Startup
 - (Add French as language and set it as keyboard layout)
 - Disable all items in Privacy settings
-- Install the programs from the admin account, but open them from the user account to set them up there
-- Change the power settings to never power off the screen and the device
-- Change the power button behaviour to the option power off
 - Activate Windows
 
-### Installation setup
+### Windows Users
+- Create a new user without admin privileges and without password (the main auto-login account)
+- Add a password to the admin account
+- Install the programs from the admin account, but open them from the user account to set them up there
+
+
+### Installation specific
 - Install processing. Install the official video and sound libraries in the user account.
 - Flash the Lattepanda Arduino Leonardo (COM3) with the Arduino code of the repo.
 - Load the video, audio, etc. files in the Processing sketch data folder
