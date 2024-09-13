@@ -6,9 +6,16 @@
 ### Lattepanda
 - Create a new user without admin privileges and without password (the main auto-login account)
 - Add a password to the admin account
+- Add a password to the BIOS (setup only)
+- Disable the Wifi
+- Disable the BLE
+- Remove unusued items form the Task Manager > Startup
+- (Add French as language and set it as keyboard layout)
+- Disable all items in Privacy settings
 - Install the programs from the admin account, but open them from the user account to set them up there
 - Change the power settings to never power off the screen and the device
 - Change the power button behaviour to the option power off
+- Activate Windows
 
 ### Installation setup
 - Install processing. Install the official video and sound libraries in the user account.
