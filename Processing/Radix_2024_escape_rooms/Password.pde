@@ -3,7 +3,7 @@
 String msg_password = "password";
 String msg_wrong = "accesso negato";
 String msg_correct = "accesso consentito";
-String scene_2_password = "123456";
+String scene_2_password = "397";
 String input_password = msg_password;
 
 boolean checkPassword() {

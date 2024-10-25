@@ -58,7 +58,7 @@ bool navigation_active = false;
 bool old_navigation_active = false;
 
 // Sensor badges threshold
-int bage_sensors_threshold = 400;
+int bage_sensors_threshold = 550;
 
 
 void setup() {

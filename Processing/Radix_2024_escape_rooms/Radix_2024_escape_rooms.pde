@@ -86,8 +86,8 @@ boolean get_focus = false;  // windows focus flag
 boolean first_draw = false;  // run the draw first before playing anything to define the canvas size 
 
 // Settings
-int screen_x = 0;  // screen x position in fullscreen(SPAN) mode
-int beamer_x = 1920;  // beamer x position in fullscreen(SPAN) mode
+int screen_x = 1920;  // screen x position in fullscreen(SPAN) mode
+int beamer_x = 0;  // beamer x position in fullscreen(SPAN) mode
 int screen_width = 1920;  // px
 int screen_height = 1080;  // px
 
