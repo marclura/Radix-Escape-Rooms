@@ -160,8 +160,8 @@ void setup() {
   
   // font loading
   println("Font loading...");
-  fontTimer = createFont("TheFuture-Black.otf", size_font_timer);
-  fontPassword = createFont("TheFuture-Black.otf", size_font_password);
+  fontTimer = createFont("TheFuture-Bold.otf", size_font_timer);
+  fontPassword = createFont("TheFuture-Bold.otf", size_font_password);
   
   // Load fake news version
   loadFakeNewsVersion();
