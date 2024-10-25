@@ -40,10 +40,10 @@ import processing.serial.*;
 boolean dev = false;
 
 // Current station
-int station_number = 1;  // 1  to 3
+int station_number = 1;  // 1  to 3, BLue, RED, GREEN
 
 // Scene management
-int scene = 2;  // starts form 0
+int scene = 0;  // starts form 0
 int old_scene = -1;
 
 // Contents

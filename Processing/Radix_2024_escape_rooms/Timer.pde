@@ -37,7 +37,24 @@ boolean runMainTimer(int duration) {
       seconds_str = "00";
     }
     
-    fill(255);
+    
+    // alternate color flashing based on the station color number
+    if(seconds % 2 == 0) { 
+      if(station_number == 1) {
+        fill(BLUE);
+      }
+      else if(station_number == 2) {
+        fill(RED);
+      }
+      else {
+        fill(GREEN);
+      }
+    }
+    else {
+      fill(255);
+    }
+    
+    
     rect(beamer_x, 0, width/2, height);
     
     fill(0);

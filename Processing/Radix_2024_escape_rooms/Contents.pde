@@ -1,5 +1,12 @@
 /* Content management */
 
+// colors of the different rooms (BLUR, RED, GREEN)
+
+color BLUE = color(0, 126, 187);
+color RED = color(223, 51, 20);
+color GREEN = color(0, 169, 41);
+
+
 void loadImages() {
   if(station_number == 1) logo = loadImage("EM_schermate_monitor_logo_blu.jpg");
   else if(station_number == 2) logo = loadImage("EM_schermate_monitor_logo_rosso.jpg");
