@@ -24,7 +24,7 @@ void playScene() {
   }
   
   /* ################  SCENE 1 #################
-     Entrance, input by remote, video playback
+     Entrance, input by remote, video playback, worlds choice
   */
   else if(scene == 1) {
     

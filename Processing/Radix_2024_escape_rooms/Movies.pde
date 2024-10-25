@@ -13,6 +13,11 @@ boolean movieDonePlaying(Movie m) {
       movie_scene_1.pause();
       movie_scene_1.jump(0);
     }
+    if(movie_scene_2.time() != 0) {
+      // rewind the movie
+      movie_scene_2.pause();
+      movie_scene_2.jump(0);
+    }
     movie_done = true;
   }
   

@@ -6,12 +6,15 @@ void loadImages() {
   if(station_number == 3) logo = loadImage("EM_schermate_monitor_logo_verde.jpg");
   
   // random first image
-  String image_1 = "EM_fake_news1_A.jpg";
+  String image_1 = "EM_fake_news1.jpg";
   switch(fake_news_version) {
     case 1:
-      image_1 = "EM_fake_news1A.jpg";
+      image_1 = "EM_fake_news1.jpg";
       break;
     case 2:
+      image_1 = "EM_fake_news1A.jpg";
+      break;
+    case 3:
       image_1 = "EM_fake_news1B.jpg";
       break;
   }
@@ -73,6 +76,9 @@ void loadFakeNewsVersion() {
   
   if(fake_news_version == 1) {
     fake_news_version = 2;
+  }
+  else if (fake_news_version == 2) {
+    fake_news_version = 3;
   }
   else fake_news_version = 1;
   
