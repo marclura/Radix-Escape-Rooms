@@ -103,7 +103,7 @@ int screen_height = 1080;  // px
 int serial_baudrate = 921600;
 boolean serial_first_contact = false;  // communication initialization
 Serial SerialPort;  // create a object for the serial class
-byte serial_port_index = 0;  // current serial port index
+byte serial_port_index = 1;  // current serial port index, default 1
 boolean serial_reset = false;  // execute arduino reset
 String income_serial_val = "";
 boolean serial_event_listening = false;  // stop the serialEvent to work when Arduino is resetting
@@ -250,7 +250,7 @@ void checkCallbackActions() {
     }
   }
   else if (soundCallbackAtion != null && soundCallbackAtion.equals("explosion")) {
-    delay(round(explosion.duration()*1000));
+    delay(round(explosion.duration()*1000) + 2000);
     relaysSpots(false);
     soundCallbackAtion = null;
   }
