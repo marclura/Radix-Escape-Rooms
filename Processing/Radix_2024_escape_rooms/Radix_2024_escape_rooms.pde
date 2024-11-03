@@ -25,6 +25,12 @@ Interface I/Os:
 # Screen
 # Audio output
 
+
+!!!!!!!!!!!!!!!!!!!!!!!
+CHANGES
+
+Arduino port! serial_port_index
+
  */
  
 // Video library
@@ -40,10 +46,10 @@ import processing.serial.*;
 boolean dev = false;
 
 // Current station
-int station_number = 1;  // 1  to 3, BLue, RED, GREEN
+int station_number = 2;  // 1 RED, 2 GREEN, 3 BLUE
 
 // Scene management
-int scene = 0;  // starts form 0
+int scene = 4;  // starts form 0
 int old_scene = -1;
 
 // Contents
@@ -74,6 +80,8 @@ SoundFile auto_distruction_3min;
 SoundFile auto_distruction_2min;
 SoundFile auto_distruction_1min;
 SoundFile current_playing;
+SoundFile background_spaceship;
+SoundFile explosion;
 
 
 // Fonts
@@ -95,14 +103,13 @@ int screen_height = 1080;  // px
 int serial_baudrate = 921600;
 boolean serial_first_contact = false;  // communication initialization
 Serial SerialPort;  // create a object for the serial class
-byte serial_port_index = 1;  // current serial port index
+byte serial_port_index = 0;  // current serial port index
 boolean serial_reset = false;  // execute arduino reset
 String income_serial_val = "";
 boolean serial_event_listening = false;  // stop the serialEvent to work when Arduino is resetting
 
 // Timer
 int main_timer_duration = 20;  // minutes, default: 20
-int timer_start_at_video_intro = 5740 / 30; // seconds (5740 frames)
 int old_millis = 0;  // ms
 int millis_delay = 0;  // seconds
 int start_one_minute_millis = 0;  // ms
@@ -127,6 +134,7 @@ int old_millis_autodistruction = 0;
 
 // Game status
 boolean playback_autodestruction = false;
+boolean loop_background_sound = false;
 boolean main_timer = false;
 boolean escape_timer = false;
 boolean bages_choice_activated = false;  // used to update the screen in the draw with the bades and play the audio
@@ -142,7 +150,7 @@ void settings() {
   smooth(10);
 }
 
-void setup() {
+void setup() {  
   
   frameRate(30);
   
@@ -179,6 +187,7 @@ void setup() {
   loadVideos();
   
   // Load Sounds
+  Sound.list();  
   loadSounds();
   
   
@@ -240,6 +249,11 @@ void checkCallbackActions() {
       soundCallbackAtion = null;
     }
   }
+  else if (soundCallbackAtion != null && soundCallbackAtion.equals("explosion")) {
+    delay(round(explosion.duration()*1000));
+    relaysSpots(false);
+    soundCallbackAtion = null;
+  }
 }
 
 void resetGame() {
@@ -258,6 +272,7 @@ void resetGame() {
   bages_choice_activated = false;
   soundCallbackAtion = null;
   escape_timer = false;
+  loop_background_sound = false;
 }
 
 void checkIfResetGame() {

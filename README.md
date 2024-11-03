@@ -15,7 +15,7 @@
 - Disable the BLE
 - Remove unusued items form the Task Manager > Startup
 - (Add French as language and set it as keyboard layout)
-- Disable all items in Privacy settings
+- Disable all items in Privacy settings (out of the Microphone access, else Processing Java will not work)
 - Activate Windows
 
 ### NumLock settings
@@ -36,6 +36,7 @@
 - Install processing. Install the official video and sound libraries in the user account.
 - Flash the Lattepanda Arduino Leonardo (COM3) with the Arduino code of the repo.
 - Load the video, audio, etc. files in the Processing sketch data folder
+- In windows Settings/Privacy/Microphone let programs access the mic else Java won't work
 - Set the number of the escape room in the Processing sketch
 - Edit the `start.bat` file match your environment and place it in the folder that opens with the run commmand `shell:startup` (Win+R keys)
 - Once plugged all the screens etc, forse the audio output via the headphone jack (delete the other HDMI audio interfaces)

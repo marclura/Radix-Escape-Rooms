@@ -63,7 +63,7 @@ void playScene() {
       
       old_scene = scene;
       
-      // video playback captain
+      // video playback captain death
       movie_scene_2.play();
       if(dev) movie_scene_2.jump(movie_scene_2.duration() - 10);
       delay(5);
@@ -82,6 +82,11 @@ void playScene() {
           main_timer = true;
           startTimer();
           playback_autodestruction = true;
+          
+          println("Play loop_background_sound audio");
+          loop_background_sound = true;
+          background_spaceship.loop();
+          background_spaceship.amp(0.8);
         }
         
         // password activate
@@ -209,17 +214,43 @@ void playScene() {
     
   }
   /* ################  SCENE 5 #################
-     End of the game
+     Explosion
   */
   else if(scene == 5) {
     if(scene != old_scene) {  // setup new scene
       println("SCENE 5");
       old_scene = scene;
       
-      println("END OF THE GAME");
-      relaysSpots(false);
+      // stop the spaceship background sounds
+      background_spaceship.jump(0);
+      background_spaceship.pause();
+      
+      relaysSpots(true);
       relaysRoom(true);
       
+      startSoundPlaying(explosion, "explosion");
+      
+      fill(255);
+      rect(0, 0, width, height);
+      
+      println("EXPLOSION");
+      relaysSpots(true);
+      relaysRoom(true);
+      
+      scene++;
+      
+    }
+     
+  }
+  
+  /* ################  SCENE 6 #################
+     End of the game
+  */
+  else if(scene == 6) {
+    if(scene != old_scene) {  // setup new scene
+      println("SCENE 6");
+      old_scene = scene;
+    
       // Message
       fill(255);
       rect(0, 0, width, height);
@@ -229,13 +260,13 @@ void playScene() {
       fill(0);
       text("Fine del gioco. Grazie per la partecipazione.", width/4, height/2);
       text("Fine del gioco. Grazie per la partecipazione.", width/4*3, height/2);
-      
     }
     
     if(checkKeyCodedPressed(RIGHT)) {
       println("Game resetted");
       resetGame();
     }
+
   }
   
 }
