@@ -6,14 +6,10 @@ color BLUE = color(0, 126, 187);
 color RED = color(223, 51, 20);
 color GREEN = color(0, 169, 41);
 
-
-void loadImages() {
-  if(station_number == 1) logo = loadImage("EM_schermate_monitor_RED.jpg");
-  else if(station_number == 2) logo = loadImage("EM_schermate_monitor_GREEN.jpg");
-  if(station_number == 3) logo = loadImage("EM_schermate_monitor_BLUE.jpg");
+void loadFakeNewsImage() {
   
-  // random first image
   String image_1 = "EM_fake_news1.jpg";
+  
   switch(fake_news_version) {
     case 1:
       image_1 = "EM_fake_news1.jpg";
@@ -26,7 +22,20 @@ void loadImages() {
       break;
   }
   
+  println("Load fake news version: " + image_1);
+  
   fake_news_1 = loadImage(image_1);
+  
+}
+
+void loadImages() {
+  if(station_number == 1) logo = loadImage("EM_schermate_monitor_RED.jpg");
+  else if(station_number == 2) logo = loadImage("EM_schermate_monitor_GREEN.jpg");
+  if(station_number == 3) logo = loadImage("EM_schermate_monitor_BLUE.jpg");
+  
+  // load variable fake news
+  loadFakeNewsImage();
+  
   fake_news_2 = loadImage("EM_fake_news2.jpg");
   fake_news_3 = loadImage("EM_fake_news3.jpg");
   fake_news_4 = loadImage("EM_fake_news4.jpg");

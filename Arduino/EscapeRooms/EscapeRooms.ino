@@ -12,8 +12,8 @@ Interface I/Os:
   - Buttons for navigation (D1 - D5)
   - Sensors for the cards (A0 - A5)
   Outputs:
-  - Relays Room  RR (D7)
-  - Relays Sports RS (D0)
+  - Relays Room  RR (D0)
+  - Relays Sports RS (D7)
   - LEDs for the buttons (D8 - D12)
 
 Serial protocol
@@ -37,8 +37,8 @@ struct Interface {
 };
 
 Interface interface[] = {
-  {"RR", 0, 7, 'o'},
-  {"RS", 0, 0, 'o'},
+  {"RR", 0, 0, 'o'},
+  {"RS", 0, 7, 'o'},
   {"LED_NEXT", 0, 8, 'o'},
   {"LED_BACK", 0, 9, 'o'},
   {"BTN_NEXT", 0, 1, 'i'},

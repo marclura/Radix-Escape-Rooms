@@ -41,13 +41,13 @@ boolean runMainTimer(int duration) {
     // alternate color flashing based on the station color number
     if(seconds % 2 == 0) { 
       if(station_number == 1) {
-        fill(BLUE);
-      }
-      else if(station_number == 2) {
         fill(RED);
       }
-      else {
+      else if(station_number == 2) {
         fill(GREEN);
+      }
+      else {
+        fill(BLUE);
       }
     }
     else {

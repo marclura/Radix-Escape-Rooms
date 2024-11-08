@@ -12,8 +12,8 @@ Interface I/Os:
   - Buttons for navigation (D1 - D5)
   - Sensors for the cards (A0 - A5)
   Outputs:
-  - Relays Room  RR (D7)
-  - Relays Sports RS (D0)
+  - Relays Room  RR (D0)
+  - Relays Sports RS (D7)
   - LEDs for the buttons (D8 - D12)
 # Remote Logitech
   - LEFT
@@ -274,6 +274,7 @@ void resetGame() {
   escape_timer = false;
   loop_background_sound = false;
   loadFakeNewsVersion();
+  loadFakeNewsImage();
 }
 
 void checkIfResetGame() {
