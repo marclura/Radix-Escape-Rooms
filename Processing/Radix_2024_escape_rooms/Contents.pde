@@ -75,12 +75,15 @@ void loadFakeNewsVersion() {
   println("loadFakeNewsVersion()");
   
   String file_name = "fake_news_version.txt";
-  String br[] = loadStrings(file_name);
   
-  // Print each value, from 0 to 255 
-  for (int i = 0; i < br.length; i++) { 
-    println("old fake_news_version: " + br[i]);
-    fake_news_version = int(br[i]);
+  if(fake_news_version != 0) { // don't read the file when game just start (1st run)
+    String br[] = loadStrings(file_name);
+    
+    // Print each value, from 0 to 255 
+    for (int i = 0; i < br.length; i++) { 
+      println("old fake_news_version: " + br[i]);
+      fake_news_version = int(br[i]);
+    }
   }
   
   if(fake_news_version == 1) {

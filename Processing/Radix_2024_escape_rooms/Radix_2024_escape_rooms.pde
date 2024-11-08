@@ -49,7 +49,7 @@ boolean dev = false;
 int station_number = 2;  // 1 RED, 2 GREEN, 3 BLUE
 
 // Scene management
-int scene = 4;  // starts form 0
+int scene = 0;  // starts form 0
 int old_scene = -1;
 
 // Contents
@@ -123,7 +123,7 @@ boolean key_released = true;  // proper events triggering
 // Scenes settings
 byte current_fake_news = 0;
 byte fake_news_count = 5;
-int fake_news_version = 1;  // every playback, will show a different fake news, so groups won't share informations
+int fake_news_version = 0;  // every playback, will show a different fake news, so groups won't share informations. Start with 0 for 1st run
 boolean check_next_scene = false;
 String next_playing = "";
 int next_autodestruction_minute = 3;
@@ -273,6 +273,7 @@ void resetGame() {
   soundCallbackAtion = null;
   escape_timer = false;
   loop_background_sound = false;
+  loadFakeNewsVersion();
 }
 
 void checkIfResetGame() {

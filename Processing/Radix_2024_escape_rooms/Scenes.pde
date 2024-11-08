@@ -255,11 +255,11 @@ void playScene() {
       fill(255);
       rect(0, 0, width, height);
       textFont(fontTimer);
-      textSize(75);
+      textSize(130);
       textAlign(CENTER);
       fill(0);
-      text("Fine del gioco. Grazie per la partecipazione.", width/4, height/2);
-      text("Fine del gioco. Grazie per la partecipazione.", width/4*3, height/2);
+      text("Prosegui questo viaggio,\nl'avventura continua....", width/4, height/2);
+      text("Prosegui questo viaggio,\nl'avventura continua...", width/4*3, height/2);
     }
     
     if(checkKeyCodedPressed(RIGHT)) {
