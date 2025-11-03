@@ -82,6 +82,7 @@ SoundFile choice_moment;
 SoundFile auto_distruction_3min;
 SoundFile auto_distruction_2min;
 SoundFile auto_distruction_1min;
+SoundFile auto_distruction_30s;
 SoundFile current_playing;
 SoundFile background_spaceship;
 SoundFile explosion;
@@ -227,7 +228,7 @@ void draw() {
       if(!runMainTimer(escape_timer_duration) || checkKeyCodedPressed(RIGHT)) {  // escape timer is over or button pressed
         println("ESCAPE TIMER OVER -> GAME END");
         escape_timer = false;
-        scene = 5;
+        scene = 9;  // Explosion scene!
       }
     }
     

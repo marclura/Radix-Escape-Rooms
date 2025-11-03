@@ -85,6 +85,7 @@ void loadSounds() {
   auto_distruction_3min = new SoundFile(this, "EM_AUDIO_06_Autodistruzione3min.mp3");
   auto_distruction_2min = new SoundFile(this, "EM_AUDIO_07_Autodistruzione2min.mp3");
   auto_distruction_1min = new SoundFile(this, "EM_AUDIO_08_Autodistruzione60sec.mp3");
+  auto_distruction_30s = new SoundFile(this, "EM_AUDIO_06_Autodistruzione30sec.mp3");
   background_spaceship = new SoundFile(this, "EM_sottofondoAstronave.mp3");
   explosion = new SoundFile(this, "EM_Esplosione_mod.mp3");
   println("loadSounds() done");
