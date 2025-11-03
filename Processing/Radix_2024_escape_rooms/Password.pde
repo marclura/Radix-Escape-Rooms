@@ -47,3 +47,41 @@ void displayPassword() {
   text(input_password, screen_x + width/4, height/2);
   
 }
+
+
+// final choice
+
+String msg_input_choice = "Sulla base dei tre sospettati,\npremi sulla tastiera 1, 2 o 3\nper indicare chi è l'assassino";
+String input_choice = msg_input_choice;
+
+
+boolean choiceColpevole() {
+  
+  boolean choice_done = false;
+  
+  if(keyPressed && key_released) {
+    key_released = false;  // prevent events skipping
+    if(key == ENTER) {
+      if(input_choice.equals("1") || input_choice.equals("2") || input_choice.equals("3")) {
+        choice_done = true;
+      }
+    }
+    else if(key == '1' || key == '2' || key == '3') {
+      input_choice = str(key);
+    }
+  }
+  
+  return choice_done;  
+}
+
+void displayChoice() {
+  textFont(fontPassword);
+  textAlign(CENTER);
+  
+  fill(255);
+  rect(screen_x, 0, width/2, height);
+  
+  fill(0);
+  text(input_choice, screen_x + width/4, height/2);
+  
+}

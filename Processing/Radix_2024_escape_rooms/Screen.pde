@@ -12,6 +12,7 @@ void screenUpdate(String content) {
     rect(screen_x, 0, width, height);
   }
   else if(content.equals("logo")) image(logo, screen_x, 0, width/2, height);
+  else if(content.equals("instructions_world_1")) image(instructions_world_1, screen_x, 0, width/2, height);
   else if(content.equals("instructions_world_2")) image(instructions_world_2, screen_x, 0, width/2, height);
   else if(content.equals("instructions_world_3")) image(instructions_world_3, screen_x, 0, width/2, height);
   else if(content.equals("fake_news_1")) image(fake_news_1, screen_x, 0, width/2, height);
@@ -19,7 +20,10 @@ void screenUpdate(String content) {
   else if(content.equals("fake_news_3")) image(fake_news_3, screen_x, 0, width/2, height);
   else if(content.equals("fake_news_4")) image(fake_news_4, screen_x, 0, width/2, height);
   else if(content.equals("instructions_badges")) image(instructions_badges, screen_x, 0, width/2, height);
+  else if(content.equals("fake_news_badges")) image(badges, screen_x, 0, width/2, height);
   else if(content.equals("badges")) set(screen_x, 0, badges);
+  else if(content.equals("final_choice_keypad")) set(screen_x, 0, final_choice_keypad);
+  else if(content.equals("final_choice_done")) set(screen_x, 0, final_choice_done);
   else if(content.equals("instructions_leave")) set(screen_x, 0, instructions_leave);
   else if(content.equals("loading")) {
     println("Loading screen...");

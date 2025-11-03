@@ -11,5 +11,6 @@ void beamerUpdate(String content) {
   }
   else if(content.equals("instructions_world_1")) set(beamer_x, 0, instructions_world_1);
   else if(content.equals("instructions_leave")) set(beamer_x, 0, instructions_leave);
+  else if(content.equals("instructions_world_2")) set(beamer_x, 0, instructions_world_2);
   
 }

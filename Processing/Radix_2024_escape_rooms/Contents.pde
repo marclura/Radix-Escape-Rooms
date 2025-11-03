@@ -40,7 +40,7 @@ void loadImages() {
   fake_news_3 = loadImage("EM_fake_news3.jpg");
   fake_news_4 = loadImage("EM_fake_news4.jpg");
   instructions_badges = loadImage("EM_schermate_monitor_badge.jpg");
-  
+  badges = loadImage("EM_badge.jpg"); 
   
   // load the array list for the fake news scene
   fake_news_list[0] = "fake_news_1";
@@ -49,12 +49,22 @@ void loadImages() {
   fake_news_list[3] = "fake_news_4";
   fake_news_list[4] = "instructions_badges";
   
-  
-  badges = loadImage("EM_badge.jpg");  
+  // load the array list of the fake news scene after the choice (last slide is the badges)
+  fake_news_list_after_choice[0] = "fake_news_1";
+  fake_news_list_after_choice[1] = "fake_news_2";
+  fake_news_list_after_choice[2] = "fake_news_3";
+  fake_news_list_after_choice[3] = "fake_news_4";
+  fake_news_list_after_choice[4] = "fake_news_badges";
+   
   instructions_leave = loadImage("EM_schermate_monitor_allarme.jpg");
   instructions_world_1 = loadImage("EM_schermate_monitor_scegliere_mondo_00.jpg");
   instructions_world_2 = loadImage("EM_schermate_monitor_scegliere_mondo_01.jpg");
   instructions_world_3 = loadImage("EM_schermate_monitor_scegliere_mondo_02.jpg");
+  
+  // final choice
+  final_choice_keypad = loadImage("EM_schermate_monitor_colpevole_tastiera.jpg");
+  final_choice_done = loadImage("EM_schermate_monitor_assassino.jpg");
+  
   println("loadImages() done");
 }
 

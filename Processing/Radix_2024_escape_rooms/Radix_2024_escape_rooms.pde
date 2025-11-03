@@ -66,8 +66,11 @@ PImage instructions_leave;
 PImage instructions_world_1;
 PImage instructions_world_2;
 PImage instructions_world_3;
+PImage final_choice_keypad;
+PImage final_choice_done;
 
 String[] fake_news_list = new String[5];
+String[] fake_news_list_after_choice = new String[5];
 
 // Videos
 Movie movie_scene_1;
