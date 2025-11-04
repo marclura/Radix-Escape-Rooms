@@ -13,7 +13,7 @@ void startTimer() {
   countdown_start_time = millis() + 1000;
 }
 
-boolean runMainTimer(int duration) {
+boolean runMainTimer(int duration) {    // seconds
   
   boolean main_timer_not_over = true;
   
@@ -21,7 +21,7 @@ boolean runMainTimer(int duration) {
   textAlign(CENTER);
   noStroke();
   
-  timer = duration * 60 * 1000 - (millis() - countdown_start_time);
+  timer = duration * 1000 - (millis() - countdown_start_time);  // seconds
   if(timer >= 0) {
     minutes = int(floor(timer / 1000 / 60));
     seconds = int(floor((timer / 1000) % 60));
@@ -65,7 +65,7 @@ boolean runMainTimer(int duration) {
   return main_timer_not_over;
 }
 
-
+/*
 void startOneMinuteCountdown() {
   println("Start one minute countdown");
   start_one_minute_millis = millis();
@@ -78,3 +78,4 @@ boolean oneMinuteCountdown() {
   }
   return elasped;
 }
+*/

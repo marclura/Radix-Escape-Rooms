@@ -113,12 +113,12 @@ String income_serial_val = "";
 boolean serial_event_listening = false;  // stop the serialEvent to work when Arduino is resetting
 
 // Timer
-int main_timer_duration = 20;  // minutes, default: 20
+int main_timer_duration = 1200;  // seconds, default: 20 min, 1200 seconds
 int old_millis = 0;  // ms
 int millis_delay = 0;  // seconds
 int start_one_minute_millis = 0;  // ms
 int one_minute_duration = 60; // seconds, default: 60
-int escape_timer_duration = 3; // minutes, default: 3
+int escape_timer_duration = 30; // seconds, default: 3
 
 
 // Keys management

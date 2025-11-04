@@ -343,16 +343,20 @@ void playScene() {
       beamerUpdate("instructions_leave");
       screenUpdate("instructions_leave");
       
-      startOneMinuteCountdown();
-      next_autodestruction_minute = 2;
+      // startOneMinuteCountdown(); old 3 minutes
+      // next_autodestruction_minute = 2;
       
-      escape_timer = true;
-      startTimer();
+      escape_timer = true;  // logic draw()
+      startTimer();  // set current timer millis()
       
-      startSoundPlaying(auto_distruction_3min, null);
+      startSoundPlaying(auto_distruction_30s, null);
+      
+      // startSoundPlaying(auto_distruction_3min, null);
       
     }
+    /*
     else {
+      
       if(oneMinuteCountdown()) {
  
         switch(next_autodestruction_minute) {
@@ -370,6 +374,7 @@ void playScene() {
       }
 
     }
+    */
     
   }
   /* ################  SCENE 9 #################
