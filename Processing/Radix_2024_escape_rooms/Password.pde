@@ -62,15 +62,14 @@ boolean choiceColpevole() {
   if(keyPressed && key_released) {
     key_released = false;  // prevent events skipping
     if(key == ENTER) {
-      if(input_choice.equals("1") || input_choice.equals("2") || input_choice.equals("3")) {
+      if(trim(input_choice).equals("1") || trim(input_choice).equals("2") || trim(input_choice).equals("3")) {
         choice_done = true;
       }
     }
     else if(key == '1' || key == '2' || key == '3') {
-      input_choice = str(key);
+      input_choice = "\n" + str(key);
     }
   }
-  
   return choice_done;  
 }
 
@@ -82,6 +81,6 @@ void displayChoice() {
   rect(screen_x, 0, width/2, height);
   
   fill(0);
-  text(input_choice, screen_x + width/4, height/2);
+  text(input_choice, screen_x + width/4, height/2 - 150);
   
 }

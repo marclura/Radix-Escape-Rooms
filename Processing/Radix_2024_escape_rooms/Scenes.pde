@@ -276,12 +276,11 @@ void playScene() {
       
       old_scene = scene;
       
-      //delay(3000);
-      
       // 18.
       // screenUpdate("final_choice_keypad");  // managed with displayChoice();
       
       delay(1000);
+      
       
       bages_choice_activated = true;
       
@@ -390,8 +389,8 @@ void playScene() {
       background_spaceship.pause();
       
       // 23.
-      relaysSpots(true);
-      relaysRoom(true);
+      relaysSpots(false);
+      relaysRoom(false);
       
       startSoundPlaying(explosion, "explosion");
       
@@ -399,8 +398,6 @@ void playScene() {
       rect(0, 0, width, height);
       
       println("EXPLOSION");
-      relaysSpots(true);
-      relaysRoom(true);
       
       scene++;
     }
@@ -425,6 +422,8 @@ void playScene() {
       fill(0);
       text("Prosegui questo viaggio,\nl'avventura continua....", width/4, height/2);
       text("Prosegui questo viaggio,\nl'avventura continua...", width/4*3, height/2);
+      
+      relaysRoom(true);
     }
     
     if(checkKeyCodedPressed(RIGHT)) {
