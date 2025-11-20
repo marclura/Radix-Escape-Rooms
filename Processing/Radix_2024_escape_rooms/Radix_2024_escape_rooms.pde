@@ -279,6 +279,7 @@ void resetGame() {
   loop_background_sound = false;
   loadFakeNewsVersion();
   loadFakeNewsImage();
+  input_choice = msg_input_choice;
 }
 
 void checkIfResetGame() {

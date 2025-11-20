@@ -348,7 +348,7 @@ void playScene() {
       escape_timer = true;  // logic draw()
       startTimer();  // set current timer millis()
       
-      startSoundPlaying(auto_distruction_30s, null);
+      startSoundPlaying(auto_distruction_30s, 1.0, null);
       
       // startSoundPlaying(auto_distruction_3min, null);
       
@@ -392,7 +392,7 @@ void playScene() {
       relaysSpots(false);
       relaysRoom(false);
       
-      startSoundPlaying(explosion, "explosion");
+      startSoundPlaying(explosion, 1.0, "explosion");
       
       fill(255);
       rect(0, 0, width, height);
